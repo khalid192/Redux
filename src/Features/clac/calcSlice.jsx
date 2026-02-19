@@ -10,6 +10,7 @@ const calcSlice = createSlice({
   reducers: {
     plus: (state, action) => {
      state.value = action.payload.number1 + action.payload.number2
+     console.log(action)
     },
     minus: (state,action) => {
      state.value = action.payload.number1 - action.payload.number2
