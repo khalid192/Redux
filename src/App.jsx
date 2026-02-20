@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { plus, minus, multiply, divide } from "./features/clac/calcSlice";
+import { plus, minus, multiply, divide } from "./Features/clac/calcSlice";
+import { plus1, minus1, multiply1, divide1 } from "./Features/clac/calcSlice2";
 import './App.css'
 
 function App() {
 
   const dispatch = useDispatch();
   const count = useSelector((state) => state.calculator.value);
+  const count2 = useSelector((state) => state.calculator2.value);
+
+  const count1 = useSelector((state) => state);
+  console.log(count1)
 
   const [number1, setNumber1] = useState(null)
   const [number2, setNumber2] = useState(null)
@@ -36,12 +41,13 @@ function App() {
   <label htmlFor="number2">Number 2:</label>
   <input onChange={handleNumber2Change} type="number" name="number2" id="number2" placeholder="Enter number 2" />
   <br />
-  <button onClick={() => dispatch(plus({number1: Number(number1), number2: Number(number2)}))}>plus</button>
-  <button onClick={() => dispatch(minus({number1: Number(number1), number2: Number(number2)}))}>minus</button>
-  <button onClick={() => dispatch(multiply({number1: Number(number1), number2: Number(number2)}))}>multiply</button>
-  <button onClick={() => dispatch(divide({number1: Number(number1), number2: Number(number2)}))}>divide</button>
+  <button onClick={() => dispatch(plus1({number1: Number(number1), number2: Number(number2)}))}>plus</button>
+  <button onClick={() => dispatch(minus1({number1: Number(number1), number2: Number(number2)}))}>minus</button>
+  <button onClick={() => dispatch(multiply1({number1: Number(number1), number2: Number(number2)}))}>multiply</button>
+  <button onClick={() => dispatch(divide1({number1: Number(number1), number2: Number(number2)}))}>divide</button>
 
-  <h1>{count}</h1>
+  
+  <h1>{count2}</h1>
   </div>
     </>
   )

@@ -23,6 +23,6 @@ const calcSlice = createSlice({
     },
   },
 });
-
+console.log(calcSlice)
 export const { plus, minus, multiply, divide } = calcSlice.actions;
 export default calcSlice.reducer;
