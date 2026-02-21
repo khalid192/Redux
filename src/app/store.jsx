@@ -8,4 +8,4 @@ export const store = configureStore({
     calculator2: calcrReducer2,
   },
 });
-console.log(store.getState())
+console.log(store.getState()) 
