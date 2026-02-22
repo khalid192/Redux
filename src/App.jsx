@@ -13,7 +13,6 @@ function App() {
   const count2 = useSelector((state) => state.calculator2.value);
 
 
-
   const [number1, setNumber1] = useState(null)
   const [number2, setNumber2] = useState(null)
 
@@ -42,13 +41,13 @@ function App() {
   <label htmlFor="number2">Number 2:</label>
   <input onChange={handleNumber2Change} type="number" name="number2" id="number2" placeholder="Enter number 2" />
   <br />
-  <button onClick={() => dispatch(fetchData())}>plus</button>
-  <button onClick={() => dispatch(minus1({number1: Number(number1), number2: Number(number2)}))}>minus</button>
-  <button onClick={() => dispatch(multiply1({number1: Number(number1), number2: Number(number2)}))}>multiply</button>
-  <button onClick={() => dispatch(divide1({number1: Number(number1), number2: Number(number2)}))}>divide</button>
+  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"plus"}))}>plus</button>
+  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"minus"}))}>minus</button>
+  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"multiply"}))}>multiply</button>
+  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"divide"}))}>divide</button>
 
   
-  <h1>{count2}</h1>
+  <h1>{count}</h1>
   </div>
     </>
   )
