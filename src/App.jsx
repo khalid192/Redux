@@ -47,7 +47,7 @@ function App() {
   <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"divide"}))}>divide</button>
 
   
-  <h1>{count}</h1>
+  <h1>{count }</h1>
   </div>
     </>
   )
