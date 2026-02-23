@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import calcrReducer from "../Features/clac/calcSlice";
-import calcrReducer2 from "../Features/clac/calcSlice2";
+import UsersReducer from "../Features/clac/usersSlice";
 
 export const store = configureStore({
   reducer: {
-    calculator: calcrReducer,
-    calculator2: calcrReducer2,
+
+    users:UsersReducer
   },
 });
-console.log(store.getState()) 
+console.log(store.getState())

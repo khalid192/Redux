@@ -1,56 +1,70 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { plus, minus, multiply, divide } from "./Features/clac/calcSlice";
-import { plus1, minus1, multiply1, divide1 } from "./Features/clac/calcSlice2";
-
-import { fetchData } from "./Features/clac/calcSlice";
-import './App.css'
+import { useEffect } from "react";
+import { fetchDataUsers } from "./Features/clac/usersSlice";
+import { Card } from "@mui/material";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 function App() {
-
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.calculator.value);
-  const count2 = useSelector((state) => state.calculator2.value);
+
+  const count3 = useSelector((state) => state.users.users);
 
 
-  const [number1, setNumber1] = useState(null)
-  const [number2, setNumber2] = useState(null)
 
-  function handleNumber1Change(e) {
-    setNumber1(e.target.value)
-  }
-
-  function handleNumber2Change(e) {
-    setNumber2(e.target.value)
-  }
 
   const sx = {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '200px',
-  }
-
-
+    display: "flex",
+    justifyContent: "center",
+    height: "100vh",
+    width: "100vw",
+    alignItems: "center",
+    background: "linear-gradient( #1f83d5, #60bed3)"
+  };
 
   return (
     <>
-  <div style={sx}>
-  <label htmlFor="number">Number 1:</label>
-  <input onChange={handleNumber1Change} type="number" name="number1" id="number" placeholder="Enter number 1" />
-  <br />
-  <label htmlFor="number2">Number 2:</label>
-  <input onChange={handleNumber2Change} type="number" name="number2" id="number2" placeholder="Enter number 2" />
-  <br />
-  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"plus"}))}>plus</button>
-  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"minus"}))}>minus</button>
-  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"multiply"}))}>multiply</button>
-  <button onClick={() => dispatch(fetchData({number1: Number(number1), number2: Number(number2),pylod:"divide"}))}>divide</button>
+      <div style={sx}>
+        <Card
+          sx={{
+            display: "flex",
+            width: "400px",
+            height: "89vh",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <CardContent sx={{ borderBottom: "solid 0.5px #2b27271c" }}>
+            <Typography
+              fontSize={"25px"}
+              sx={{ textAlign: "center", color: "#494545" }}
+            >
+              User List
+            </Typography>
+          </CardContent>
+          <Typography sx={{ lineHeight: "2" }}>
+            <ul>
+              {count3.map((x) => {
+                return <li>{x.name}</li>;
+              })}
+            </ul>
+          </Typography>
 
-  
-  <h1>{count }</h1>
-  </div>
+          <CardActions
+            sx={{
+              justifyContent: "center",
+              borderTop: "solid 0.5px #2b27271c",
+              padding: "15px",
+            }}
+          >
+            <Button  variant="contained">Reloud</Button>
+          </CardActions>
+        </Card>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
