@@ -1,19 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchDataUsers } from "./Features/clac/usersSlice";
+
 import { Card } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
+import Error from "./Error.jsx";
+import NameList from "./NameList.jsx";
+import CircularIndeterminate from "./CircularProgress.jsx";
+
 function App() {
   const dispatch = useDispatch();
 
-  const count3 = useSelector((state) => state.users.users);
+  const loading = useSelector((state) => state.users.loading);
+  const error = useSelector((state) => state.users.error);
+  console.log(error);
 
+  useEffect(() => {
+    dispatch(fetchDataUsers());
+  }, []);
 
-
+  function hn() {
+    dispatch(fetchDataUsers());
+  }
 
   const sx = {
     display: "flex",
@@ -21,7 +33,7 @@ function App() {
     height: "100vh",
     width: "100vw",
     alignItems: "center",
-    background: "linear-gradient( #1f83d5, #60bed3)"
+    background: "linear-gradient( #1f83d5, #60bed3)",
   };
 
   return (
@@ -31,7 +43,7 @@ function App() {
           sx={{
             display: "flex",
             width: "400px",
-            height: "89vh",
+            height: "auto",
             flexDirection: "column",
             justifyContent: "space-between",
           }}
@@ -44,12 +56,9 @@ function App() {
               User List
             </Typography>
           </CardContent>
-          <Typography sx={{ lineHeight: "2" }}>
-            <ul>
-              {count3.map((x) => {
-                return <li>{x.name}</li>;
-              })}
-            </ul>
+
+          <Typography component="div" sx={{ lineHeight: "2"}}>
+            {loading ? <CircularIndeterminate /> :error !== null?<Error />: <NameList />}
           </Typography>
 
           <CardActions
@@ -59,7 +68,9 @@ function App() {
               padding: "15px",
             }}
           >
-            <Button  variant="contained">Reloud</Button>
+            <Button onClick={hn} disabled={loading} variant="contained">
+              Reload Users
+            </Button>
           </CardActions>
         </Card>
       </div>
